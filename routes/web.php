@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', '\App\Http\Controllers\HomeController@index')->name('home');
+
+//Visualização dos clientes.
+/*Route::get('/clientes', '\App\Http\Controllers\ClienteController@index')->name('clientes');
+Route::get('/cliente', 'ClienteController@index')->name('user');*/
+
+Route::controller(\App\Http\Controllers\ClienteController::class)->group(function () {
+    Route::get('/clientes', 'index')->name('clientes');
+    Route::get('/clientes/{fe}', 'getCliente')->name('cliente');
 });
+//Tela de cadastro de cliente.
+Route::get('/cadastrar-cliente', '\App\Http\Controllers\ClienteController@cadastrarCliente')->name('cadastrar-cliente');
