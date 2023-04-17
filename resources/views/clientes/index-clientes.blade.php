@@ -15,7 +15,7 @@
           <div class="col-md-12 d-flex">
              <div class="card card-table flex-fill">
                <div class="card-header">
-                  <h4 class="card-title float-start">Últimos Cadastros</h4>
+                  <h4 class="card-title float-start">Lista de Clientes</h4>
                   <div class="table-search float-end">
                      <form action="" method="get">
                         <input type="text" class="form-control" value="{{Request::input('pesquisar')}}" name="pesquisar" placeholder="Pesquisar">

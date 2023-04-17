@@ -11,7 +11,7 @@
     <i class="fe fe-text-align-left"></i>
     </a>
 
-    @if(!in_array(Route::currentRouteName(),['clientes','home']))
+    @if(!in_array(Route::currentRouteName(),['clientes']))
     <div class="top-nav-search">
        <form action="{!! route('clientes') !!}" method="get">
           <input type="text" class="form-control" name="pesquisar" value="" placeholder="Pesquisar clientes">
