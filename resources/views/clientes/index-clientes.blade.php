@@ -14,6 +14,15 @@
        <div class="row">
           <div class="col-md-12 d-flex">
              <div class="card card-table flex-fill">
+               <div class="card-header">
+                  <h4 class="card-title float-start">Últimos Cadastros</h4>
+                  <div class="table-search float-end">
+                     <form action="" method="get">
+                        <input type="text" class="form-control" value="{{Request::input('pesquisar')}}" name="pesquisar" placeholder="Pesquisar">
+                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                     </form>
+                  </div>
+               </div>
                 <div class="card-body">
                    <div class="table-responsive">
                       <table class="table table-hover table-center mb-0 no-footer">
@@ -28,37 +37,29 @@
                                <th class="text-end"></th>
                             </tr>
                          </thead>
-                         <tbody>
-                            <tr>
-                               <td>
-                                  <h2 class="table-avatar">
-                                     {{--<a href="general.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-03.jpg" alt="User Image"></a>--}}
-                                     <a href="{!! route('clientes') !!}/fe">Teste</a>
-                                  </h2>
-                               </td>
-                               <td>01 Oct 2019</td>
-                               <td>01.00 PM</td>
-                               <td>03.54 PM</td>
-                               <td>11.00 PM</td>
-                               <td>M</td>
-                               <td class="text-end">
-                                  <div class="actions">
-                                     <a href="{!! route('clientes') !!}/fe" class="btn btn-sm bg-success-light me-2">
-                                     <i class="fe fe-pencil"></i>
-                                     </a>
-                                     <a href="#" class="btn btn-sm bg-danger-light">
-                                     <i class="fe fe-trash"></i>
-                                     </a>
-                                  </div>
-                               </td>
-                            </tr>
-                         </tbody>
+                           @livewire('clientes.list-clientes')
                       </table>
                    </div>
                 </div>
              </div>
           </div>
-       </div>
+       </div><div class="col-md-12 d-flex justify-content-center">{{$clientes->appends(Request::except('page'))->links('layouts._partials.pagination')}}</div>
     </div>
+    
  </div>
+
+   @section('scripts')
+      @livewireScripts
+      <script>    
+         /*jQuery(function($){
+               Livewire.hook('message.sent', (message, component) => {
+                  alert('puxa')
+                  return false;
+                  if(message.updateQueue[0].payload.name == 'estado'){
+                     $('.select-cidades').html(`<option>Carregando...</option>`);
+                  }
+               })
+         })*/
+      </script>
+   @stop
 @stop

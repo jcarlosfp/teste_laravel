@@ -13,8 +13,8 @@
                       <i class="fe fe-users"></i>
                       </span>
                       <div class="dash-count">
-                         <a href="#" class="count-title">Total de Clientes</a>
-                         <a href="#" class="count"> 10,320</a>
+                         <a href="{!! route('clientes') !!}" class="count-title">Total de Clientes</a>
+                         <a href="{!! route('clientes') !!}" class="count"> {!! $totalClientes !!}</a>
                       </div>
                    </div>
                 </div>
@@ -25,11 +25,11 @@
                 <div class="card-body">
                    <div class="dash-widget-header">
                       <span class="dash-widget-icon bg-warning">
-                      <i class="fe fe-phone"></i>
+                      <span class="user-img"><img class="rounded-circle" src="{!! asset('assets/img/profiles/avatar_masculino.jpg') !!}" width="31" alt="Seema Sisty"></span>
                       </span>
                       <div class="dash-count">
-                         <a href="#" class="count-title">Call Duration</a>
-                         <a href="#" class="count"> 14,628</a>
+                         <a href="{!! route('clientes') !!}?pesquisar=Masculino" class="count-title">Total Masculino</a>
+                         <a href="{!! route('clientes') !!}?pesquisar=Masculino" class="count"> {!! $totalHomens !!}</a>
                       </div>
                    </div>
                 </div>
@@ -40,11 +40,11 @@
                 <div class="card-body">
                    <div class="dash-widget-header">
                       <span class="dash-widget-icon bg-danger">
-                      <i class="fe fe-comments"></i>
+                        <span class="user-img"><img class="rounded-circle" src="{!! asset('assets/img/profiles/avatar_feminino.jpg') !!}" width="31" alt="Seema Sisty"></span>
                       </span>
                       <div class="dash-count">
-                         <a href="#" class="count-title">Chat Count</a>
-                         <a href="#" class="count"> 2,980</a>
+                         <a href="{!! route('clientes') !!}?pesquisar=Feminino" class="count-title">Total Feminino</a>
+                         <a href="{!! route('clientes') !!}?pesquisar=Feminino" class="count"> {!! $totalMulheres !!}</a>
                       </div>
                    </div>
                 </div>
@@ -57,7 +57,9 @@
                 <div class="card-header">
                    <h4 class="card-title float-start">Últimos Cadastros</h4>
                    <div class="table-search float-end">
-                      <input type="text" class="form-control" placeholder="Search">
+                     <form action="{!! route('clientes') !!}" method="get">
+                        <input type="text" class="form-control" name="pesquisar" placeholder="Pesquisar">
+                     </form>
                       <button class="btn" type="submit"><i class="fa fa-search"></i></button>
                    </div>
                 </div>
@@ -73,16 +75,18 @@
                             </tr>
                          </thead>
                          <tbody>
+                           @foreach($clientes as $cliente)
                             <tr>
                                <td class="text-nowrap">
-                                  <div class="font-weight-600">001</div>
+                                  <div class="font-weight-600">{!!$cliente->nome!!}</div>
                                </td>
-                               <td>Scott Albright</td>
-                               <td>20 Jan 2019</td>
+                               <td>{!! date('d/m/Y',strtotime($cliente->data_nasc)) !!}</td>
+                               <td>{!! $cliente->estado !!}</td>
                                <td class="text-end">
-                                  <div class="font-weight-600 text-danger">Inactive</div>
+                                  <div class="font-weight-600">{!!$cliente->sexo!!}</div>
                                </td>
                             </tr>
+                            @endforeach
                          </tbody>
                       </table>
                    </div>
